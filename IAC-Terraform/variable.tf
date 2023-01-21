@@ -4,7 +4,25 @@ variable "aws_region" {
   default     = "ap-south-1"
 }
 
-variable "s3_key" {
-  type        = string
-  description = "S3 storage key"
+variable "env" {
+  type = string
+  description = "This is environment prifix"
+}
+
+variable "lambdas" {
+  type = map(any)
+  default = {
+    "dev" = [
+      {
+        # Lambda 1
+        lambda_function = "ec2-metadata"
+      }
+    ]
+    "prod" = [
+      {
+        # Lambda 1
+        lambda_function = "ec2-metadata"
+      }
+    ]
+  }
 }
