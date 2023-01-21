@@ -51,9 +51,9 @@ phases:
   build:
     commands:
       - ls -la && pwd
-      - NodeJs_FUNCTIONS=$(pwd)
-      - echo $NodeJs_FUNCTIONS
-      - FUNCTIONS=`ls $NodeJs_FUNCTIONS/src/`
+      - $python_FUNCTIONS=$(pwd)
+      - echo $python_FUNCTIONS
+      - FUNCTIONS=`ls $python_FUNCTIONS/src/`
       - terraform plan -var=$ENV
       - |
         if [ $ENV = $DEV ]; then

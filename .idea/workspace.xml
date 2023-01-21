@@ -5,15 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9bc7a7e4-32fa-45e0-9e51-4ccd59e01d69" name="Changes" comment="Initial commit">
-      <changelist_data name="Shahabaj S. Shaikh" email="50728638+shahabajsshaikh@users.noreply.github.com" />
-      <change afterPath="$PROJECT_DIR$/IAC-Terraform/data.tf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IAC-Terraform/lambda.tf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IAC-Terraform/local.tf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IAC-Terraform/backend.tf" beforeDir="false" afterPath="$PROJECT_DIR$/IAC-Terraform/backend.tf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IAC-Terraform/buildspec.yml" beforeDir="false" afterPath="$PROJECT_DIR$/IAC-Terraform/buildspec.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IAC-Terraform/script.sh" beforeDir="false" afterPath="$PROJECT_DIR$/IAC-Terraform/script.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IAC-Terraform/variable.tf" beforeDir="false" afterPath="$PROJECT_DIR$/IAC-Terraform/variable.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IAC-Terraform/ec2.tf" beforeDir="false" afterPath="$PROJECT_DIR$/IAC-Terraform/ec2.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IAC-Terraform/output.tf" beforeDir="false" afterPath="$PROJECT_DIR$/IAC-Terraform/output.tf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,6 +138,14 @@
       <option name="presentableId" value="Default" />
       <updated>1673866138318</updated>
     </task>
+    <task id="LOCAL-00001" summary="Initial commit">
+      <created>1674293900755</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1674293900755</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
