@@ -1,0 +1,73 @@
+version: 0.2
+
+env:
+
+  # Variables used in build phase.
+  variables:
+    PRD: "env=prod"
+    DEV: "env=dev"
+
+  # On the fly parameter passed from codebuild/codepipeline.
+  exported-variables:
+    - ENV
+    - STATE_LOC
+
+  # Its used for pull out account specific keys.
+  secrets-manager:
+    DEV_ACCESS_KEY: dev/iaas/keys:access_key
+    DEV_SECRET_KEY: dev/iaas/keys:secret_key
+    PROD_ACCESS_KEY: prod/iaas/keys:access_key
+    PROD_SECRET_KEY: prod/iaas/keys:secret_key
+
+phases:
+  install:
+    commands:
+      - terraform version
+      - echo $ENV
+      - echo $STATE_LOC
+      - terraform init -backend-config=$STATE_LOC
+      - echo $DEV_ACCESS_KEY
+      - echo $DEV_SECRET_KEY
+      - echo $PROD_ACCESS_KEY
+      - echo $PROD_SECRET_KEY
+
+    finally:
+      - echo "Install phase done..!"
+
+  pre_build:
+    commands:
+      - ls -la && pwd
+      - NodeJs_FUNCTIONS=$(pwd)
+      - echo $NodeJs_FUNCTIONS
+      - FUNCTIONS=`ls $NodeJs_FUNCTIONS/src/` # all lambda folder function should be upload here"
+      - chmod +x ./script.sh && ./script.sh $FUNCTIONS
+      - pwd && ls -la
+      - echo $ENV
+      - echo $STATE_LOC
+
+    finally:
+      - echo "Pre build phase done..!"
+
+  build:
+    commands:
+      - ls -la && pwd
+      - NodeJs_FUNCTIONS=$(pwd)
+      - echo $NodeJs_FUNCTIONS
+      - FUNCTIONS=`ls $NodeJs_FUNCTIONS/src/`
+      - terraform plan -var=$ENV
+      - |
+        if [ $ENV = $DEV ]; then
+        terraform plan -var=$ENV -var="access_key=$DEV_ACCESS_KEY" -var="secret_key=$DEV_SECRET_KEY" -var="Lambda/dev/terraform.tfstate";
+        terraform apply -var=$ENV -var="access_key=$DEV_ACCESS_KEY" -var="secret_key=$DEV_SECRET_KEY" -var="Lambda/dev/terraform.tfstate" -auto-approve ;
+        terraform destroy -var=$ENV -var="access_key=$DEV_ACCESS_KEY" -var="secret_key=$DEV_SECRET_KEY" -var="Lambda/dev/terraform.tfstate" -auto-approve;
+        fi
+
+    finally:
+      - echo "Build phase done..!"
+
+  post_build:
+    commands:
+      - pwd
+      - ls -la
+    finally:
+      - echo "Post Build phase done..!"
